@@ -1,0 +1,28 @@
+services:
+  api:
+    container_name: e-commerce-demo-backend-api-1 # Defines a consistent container name that will be adopted upon spinning a container up.
+    build:
+      context: .. # Path to filder to include in container
+      dockerfile: .devcontainer/Dockerfile # Path to your Express API Dockerfile
+    env_file: # Environment variables to inject into project.
+      - .env.dev
+    ports:
+      - "3001:3001" # Map host port 3001 to container port 3001
+    volumes:
+      - ..:/workspaces/e-commerce-demo-backend:cached
+    depends_on:
+      - db # Ensure the database starts before the API
+
+  db:
+    image: mysql:8
+    container_name: e-commerce-demo-db-1 # Defines a consistent container name that will be adopted upon spinning a container up.
+    env_file: # Environment variables to inject into project.
+      - .env.dev
+    volumes:
+      - mysql_data:/var/lib/mysql  # This line ensures data persistence
+    ports: # Map host port 3306 to container port 3306
+      - "3306:3306"
+
+# Define the volume at the bottom of the file
+volumes:
+  mysql_data:
