@@ -10,9 +10,6 @@ const app = express();
 
 connectToDatabase();
 
-console.log('Loaded DB_NAME:', process.env);
-
-
 // Global Authentication Middleware
 // app.use()
 

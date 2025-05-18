@@ -4,10 +4,10 @@ const validateEnvVariables = () => {
     const requiredEnvVars = [
         { name: 'MYSQL_DATABASE', value: process.env.MYSQL_DATABASE },
         { name: 'MYSQL_USER', value: process.env.MYSQL_USER },
-        { name: 'MYSQL_PASSWORD', value: process.env.MYSQL_PASSWORD },
+        { name: 'MYSQL_ROOT_PASSWORD', value: process.env.MYSQL_ROOT_PASSWORD },
         { name: 'DB_HOST', value: process.env.DB_HOST },
-        { name: 'DB_PORT', value: process.env.DB_PORT },
-        { name: 'DB_DIALECT', value: process.env.DB_DIALECT }
+        { name: 'DB_DIALECT', value: process.env.DB_DIALECT },
+        { name: 'DB_PORT', value: process.env.DB_PORT }
     ];
 
     const missingVars = requiredEnvVars
@@ -22,9 +22,9 @@ const validateEnvVariables = () => {
 validateEnvVariables();
 
 const client = new Sequelize(
-    process.env.MYSQL_DATABASE as string, 
-    process.env.MYSQL_USER as string, 
-    process.env.MYSQL_PASSWORD as string, 
+    process.env.MYSQL_DATABASE as string,
+    process.env.MYSQL_USER as string,
+    process.env.MYSQL_ROOT_PASSWORD as string,
     {
         host: process.env.DB_HOST,
         dialect: process.env.DB_DIALECT as Dialect,
@@ -32,7 +32,7 @@ const client = new Sequelize(
     }
 );
 
-export async function connectToDatabase(){
+export async function connectToDatabase() {
     try {
         await client.authenticate();
         console.log('Connection has been established successfully.');

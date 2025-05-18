@@ -12,7 +12,7 @@ services:
       - ..:/workspaces/e-commerce-demo-backend:cached
     depends_on:
       - db # Ensure the database starts before the API
-
+      
   db:
     image: mysql:8
     container_name: e-commerce-demo-db-1 # Defines a consistent container name that will be adopted upon spinning a container up.

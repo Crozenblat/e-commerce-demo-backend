@@ -19,3 +19,5 @@ DB_DIALECT={db dialect for sequelize(mysql, postgres, etc)}
 
 - After building the container, use the below command within the api Docker container to construct the database:
 sh -c "npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+
+- After seeding is complete, do npm run dev to start the api listening.
