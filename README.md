@@ -11,6 +11,7 @@ You must create a file called .env.dev with the following format:
 APP_PORT={api port number to listen from}
 
 MYSQL_DATABASE={db name}
+MYSQL_USER={root or username}
 MYSQL_ROOT_PASSWORD={db password}
 
 DB_HOST={db host}
